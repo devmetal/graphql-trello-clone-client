@@ -1,0 +1,51 @@
+{
+  "name": "plano-client-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.1.7",
+    "apollo-client": "^2.2.2",
+    "apollo-link": "^1.1.0",
+    "apollo-link-context": "^1.0.5",
+    "apollo-link-http": "^1.3.2",
+    "apollo-link-ws": "^1.0.5",
+    "apollo-utilities": "^1.0.6",
+    "chroma-js": "^1.3.6",
+    "graphql": "^0.13.0",
+    "graphql-tag": "^2.7.3",
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "react-styled-flexboxgrid": "^2.1.1",
+    "styled-components": "^3.1.5",
+    "subscriptions-transport-ws": "^0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9010 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-links": "^3.3.12",
+    "@storybook/addons": "^3.3.12",
+    "@storybook/react": "^3.3.12",
+    "babel-core": "^6.26.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-enzyme": "^4.1.1",
+    "react-test-renderer": "^16.2.0"
+  },
+  "proxy": {
+    "/graphql": {
+      "target": "http://localhost:5432"
+    }
+  }
+}
