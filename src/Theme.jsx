@@ -5,7 +5,7 @@ import chroma from 'chroma-js';
 import './reboot.css';
 import './height.css';
 
-const bg = '#F3F3F3';
+const bg = 'pink';
 const fg = chroma(bg).darken().hex();
 const fg2 = chroma(fg).darken().hex();
 const btn = chroma(fg2).darken().hex();
