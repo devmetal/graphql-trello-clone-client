@@ -10,7 +10,6 @@ import Card from '../components/Card';
 import TicketCard from '../components/TicketCard';
 import TicketEditor from '../components/TicketEditor';
 import EditableTicket from '../components/EditableTicket';
-import Ticket from '../components/Ticket';
 import Board from '../components/Board';
 import Boards from '../components/Boards';
 
@@ -74,20 +73,14 @@ storiesOf('Card', module)
     </Card>
   )
   .add('TicketCard', () =>
-    <TicketCard onEdit={action('onEdit')} label="Ticket label" body={lorem} />
-  )
-  .add('TicketCard With Comments', () =>
-    <TicketCard onEdit={action('onEdit')} label="Ticket label" body={lorem} comments={comments} />
+    <TicketCard onEdit={action('onEdit')} ticket={tickets[0]} />
   )
   .add('TicketEditor', () =>
-    <TicketEditor onSave={action('save')} label="Ticket label" body={lorem} />
+    <TicketEditor onSave={action('save')} ticket={tickets[0]} />
   )
   .add('EditableTicket', () =>
-    <EditableTicket onSave={action('onSave')} label="Ticket Title" body={lorem} />
+    <EditableTicket onSave={action('onSave')} ticket={tickets[0]} />
   )
-  .add('Ticket', () =>
-    <Ticket ticket={{...tickets[0]}} />
-  );
 
 storiesOf('Board', module)
   .addDecorator(story => (
