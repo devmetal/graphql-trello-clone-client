@@ -10,36 +10,28 @@ class TicketCreator extends Component {
     onCreate: PropTypes.func.isRequired,
   };
 
-  startEdit = () =>
-    this.setState({ editing: true });
-  
-  stopEdit = () =>
-    this.setState({ editing: false });
+  startEdit = () => this.setState({ editing: true });
 
-  handleCreate = (ticket) => {
+  stopEdit = () => this.setState({ editing: false });
+
+  handleCreate = ticket => {
     this.setState({ editing: false });
     this.props.onCreate(ticket);
-  }
+  };
 
   render() {
     const { editing } = this.state;
 
     if (!editing) {
       return (
-        <Button
-          fullWidth
-          onClick={this.startEdit}
-        >
+        <Button fullWidth onClick={this.startEdit}>
           Create
         </Button>
-      )
+      );
     }
 
     return (
-      <TicketEditor
-        onCreate={this.handleCreate}
-        onCancel={this.stopEdit}
-      />
+      <TicketEditor onCreate={this.handleCreate} onCancel={this.stopEdit} />
     );
   }
 }

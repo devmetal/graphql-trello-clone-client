@@ -7,8 +7,4 @@ const CommentBox = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.fg};
 `;
 
-export default ({ body }) => (
-  <CommentBox>
-    {body}
-  </CommentBox>
-);
+export default ({ body }) => <CommentBox>{body}</CommentBox>;

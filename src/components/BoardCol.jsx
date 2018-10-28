@@ -14,4 +14,4 @@ export default ({ children, onDrop, onDragOver }) => (
   <StyledCol onDrop={onDrop} onDragOver={onDragOver} md={3}>
     {children}
   </StyledCol>
-)
+);

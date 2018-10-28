@@ -27,34 +27,28 @@ class Board extends Component {
       label,
     });
 
-  handleSaveTicket = ticket =>
-    this.props.onSaveTicket(ticket);
+  handleSaveTicket = ticket => this.props.onSaveTicket(ticket);
 
-  handleCreateTicket = ticket =>
-    this.props.onCreateTicket(ticket);
+  handleCreateTicket = ticket => this.props.onCreateTicket(ticket);
 
-  handleRemoveTicket = ticket =>
-    this.props.onRemoveTicket(ticket);
+  handleRemoveTicket = ticket => this.props.onRemoveTicket(ticket);
 
-  handleDrop = (e) => {
+  handleDrop = e => {
     if (e.stopPropagation) {
       e.stopPropagation();
     }
 
     const data = JSON.parse(e.dataTransfer.getData('application/json'));
     this.props.onMoveTicket(data.ticket);
-  }
+  };
 
-  handleDragOver = (e) => {
+  handleDragOver = e => {
     e.preventDefault();
-  }
+  };
 
   handleDragStart = (e, ticket) => {
-    e.dataTransfer.setData(
-      'application/json',
-      JSON.stringify({ ticket }),
-    );
-  }
+    e.dataTransfer.setData('application/json', JSON.stringify({ ticket }));
+  };
 
   render() {
     const { label, tickets } = this.props;

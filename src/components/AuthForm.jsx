@@ -19,16 +19,14 @@ const Input = styled.input`
 class AuthForm extends Component {
   state = { email: '', password: '' };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onLogin({ ...this.state });
   };
 
-  handleChangeEmail = e =>
-    this.setState({ email: e.target.value });
+  handleChangeEmail = e => this.setState({ email: e.target.value });
 
-  handleChangePass = e =>
-    this.setState({ password: e.target.value });
+  handleChangePass = e => this.setState({ password: e.target.value });
 
   render() {
     const { className } = this.props;
@@ -50,12 +48,10 @@ class AuthForm extends Component {
             placeholder="password..."
           />
         </InputItem>
-        <Button type="submit">
-          Login
-        </Button>
+        <Button type="submit">Login</Button>
       </form>
     );
-  };
+  }
 }
 
 export default AuthForm;

@@ -1,18 +1,18 @@
 import gql from 'graphql-tag';
 
 export default gql`
-mutation CreateTicket($ticket: TicketInput!) {
-  createTicket(ticket: $ticket) {
-    id
-    label
-    body
-    comments {
+  mutation CreateTicket($ticket: TicketInput!) {
+    createTicket(ticket: $ticket) {
       id
+      label
       body
-    }
-    board {
-      id
+      comments {
+        id
+        body
+      }
+      board {
+        id
+      }
     }
   }
-}
 `;

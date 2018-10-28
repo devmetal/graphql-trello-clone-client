@@ -32,8 +32,7 @@ class BoardsContainer extends Component {
     this.subscriptions.push(this.props.subsBoardUpdated());
   };
 
-  componentWillUnmount = () =>
-    this.subscriptions.map(s => s());
+  componentWillUnmount = () => this.subscriptions.map(s => s());
 
   handleSaveBoard = ({ id, label }) => {
     this.props.updateBoard({
@@ -68,7 +67,7 @@ class BoardsContainer extends Component {
           label,
           body,
         },
-      }
+      },
     });
   };
 
@@ -93,14 +92,16 @@ class BoardsContainer extends Component {
           board: {
             __typename: 'Board',
             id: boardId,
-          }
-        }
+          },
+        },
       },
       update: (proxy, { data }) => {
         const prev = proxy.readQuery({ query });
-        const next = store.addTicketToBoard(prev, { ticket: data.createTicket });
+        const next = store.addTicketToBoard(prev, {
+          ticket: data.createTicket,
+        });
         proxy.writeQuery({ query, data: next });
-      }
+      },
     });
   };
 
@@ -121,7 +122,9 @@ class BoardsContainer extends Component {
       },
       update: (proxy, { data }) => {
         const prev = proxy.readQuery({ query });
-        const next = store.removeTicketFromBoard(prev, { ticket: data.removeTicket });
+        const next = store.removeTicketFromBoard(prev, {
+          ticket: data.removeTicket,
+        });
         proxy.writeQuery({ query, data: next });
       },
     });
@@ -152,9 +155,11 @@ class BoardsContainer extends Component {
       update: (proxy, { data }) => {
         const prev = proxy.readQuery({ query });
         const removed = store.removeTicketFromBoard(prev, {
-          ticket: {...data.moveTicket, board: { id: boardFrom }},
+          ticket: { ...data.moveTicket, board: { id: boardFrom } },
         });
-        const added = store.addTicketToBoard(removed, { ticket: data.moveTicket });
+        const added = store.addTicketToBoard(removed, {
+          ticket: data.moveTicket,
+        });
         proxy.writeQuery({ query, data: added });
       },
     });
@@ -178,11 +183,11 @@ class BoardsContainer extends Component {
       />
     );
   }
-};
+}
 
 export default compose(
   graphql(query, {
-    props: (props) => ({
+    props: props => ({
       ...props,
       subsTicketAdded: () =>
         props.data.subscribeToMore({
@@ -207,7 +212,7 @@ export default compose(
           document: boardUpdated,
           updateQuery: (prev, { subscriptionData: { data } }) =>
             store.updateBoard(prev, { board: data.boardUpdated }),
-        })
+        }),
     }),
   }),
   graphql(updateBoard, { name: 'updateBoard' }),

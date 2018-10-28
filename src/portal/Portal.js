@@ -8,18 +8,13 @@ export default class extends Component {
 
   componentDidMount = () => {
     modalRoot.appendChild(this.el);
-  }
-  
+  };
+
   componentWillUnmount = () => {
     modalRoot.removeChild(this.el);
-  }
+  };
 
   render() {
-    return ReactDOM.createPortal(
-      this.props.children,
-      this.el,
-    );
+    return ReactDOM.createPortal(this.props.children, this.el);
   }
-};
-
-
+}

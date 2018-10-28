@@ -7,10 +7,18 @@ import './height.css';
 import './portal.css';
 
 const bg = '#f3f3f3';
-const fg = chroma(bg).darken().hex();
-const fg2 = chroma(fg).darken().hex();
-const btn = chroma(fg2).darken().hex();
-const txt =  chroma(btn).darken().hex();
+const fg = chroma(bg)
+  .darken()
+  .hex();
+const fg2 = chroma(fg)
+  .darken()
+  .hex();
+const btn = chroma(fg2)
+  .darken()
+  .hex();
+const txt = chroma(btn)
+  .darken()
+  .hex();
 
 const theme = {
   colors: {
@@ -22,8 +30,9 @@ const theme = {
   },
   border: {
     radius: '5px',
-  }
+  },
 };
 
-export default ({ children }) =>
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+export default ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);

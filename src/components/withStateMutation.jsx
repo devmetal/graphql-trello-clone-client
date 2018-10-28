@@ -15,20 +15,20 @@ const withStateMutation = ({ name = 'mutate' } = {}) => WrappedComponent =>
         result: null,
       });
       return this.props[name](options)
-        .then((result) => {
+        .then(result => {
           this.setState({
             loading: false,
             error: null,
             result: result,
-          })
+          });
         })
-        .catch((err) => {
+        .catch(err => {
           this.setState({
             loading: false,
             error: err,
-            result: null
+            result: null,
           });
-        })
+        });
     }
 
     render() {
@@ -39,7 +39,7 @@ const withStateMutation = ({ name = 'mutate' } = {}) => WrappedComponent =>
         [this.errorProperty]: this.state.error,
         [this.resultProperty]: this.state.result,
       };
-      return <WrappedComponent {...props} />
+      return <WrappedComponent {...props} />;
     }
   };
 

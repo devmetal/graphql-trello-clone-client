@@ -8,7 +8,7 @@ const Flex = styled.div`
 `;
 
 const FlexItem = styled.div`
-  flex-basis: ${props => props.flexBasis || 'auto'}
+  flex-basis: ${props => props.flexBasis || 'auto'};
 `;
 
 export { Flex, FlexItem };

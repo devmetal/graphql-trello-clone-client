@@ -10,19 +10,22 @@ const Card = styled.div`
   background-color: ${props => props.theme.colors.fg2};
   border-radius: ${props => props.theme.border.radius};
   position: relative;
-  opacity: ${props => props.loading ? 0.5 : 1};
+  opacity: ${props => (props.loading ? 0.5 : 1)};
 `;
 
 const Title = styled.h4`
   margin: 0;
-`
+`;
 
 const CursorMove = styled.div`
   cursor: move;
 `;
 
-const DragIcon = () =>
-  <CursorMove><i className="fas fa-bars" /></CursorMove>;
+const DragIcon = () => (
+  <CursorMove>
+    <i className="fas fa-bars" />
+  </CursorMove>
+);
 
 const CardH = styled.div`
   display: flex;
@@ -41,26 +44,22 @@ const CardB = styled.div`
 
 export default class extends Card {
   static propTypes = {
-    title: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.node,
-    ]).isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     children: PropTypes.node.isRequired,
     onDragStart: PropTypes.func,
     loading: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     loading: false,
-  }
+  };
 
-  setDragIconRef = node =>
-    this.dragRef = node;
-  
-  handleDragStart = (e) => {
+  setDragIconRef = node => (this.dragRef = node);
+
+  handleDragStart = e => {
     this.props.onDragStart(e);
   };
-  
+
   render() {
     const { title, children, loading } = this.props;
 
@@ -71,13 +70,11 @@ export default class extends Card {
         loading={loading}
       >
         <CardH>
-          {(typeof title === 'string') ? <Title>{title}</Title> : title}
+          {typeof title === 'string' ? <Title>{title}</Title> : title}
           <DragIcon />
         </CardH>
-        <CardB>
-          {children}
-        </CardB>
+        <CardB>{children}</CardB>
       </Card>
-    )
+    );
   }
 }

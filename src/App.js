@@ -6,7 +6,12 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 
 import PrivateRoute from './components/PrivateRoute';
 import StrangersRoute from './components/StrangersRoute';
@@ -70,14 +75,16 @@ class App extends Component {
                 path="/boards"
                 component={BoardsContainer}
                 redirect={{
-                  pathname: '/login'
+                  pathname: '/login',
                 }}
               />
               <StrangersRoute
                 path="/login"
-                component={() => <Auth subsClient={wsLink.subscriptionClient} />}
+                component={() => (
+                  <Auth subsClient={wsLink.subscriptionClient} />
+                )}
                 redirect={{
-                  pathname: '/boards'
+                  pathname: '/boards',
                 }}
               />
               <Route component={() => <Redirect to="/boards" />} />

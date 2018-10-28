@@ -18,17 +18,17 @@ class Tickets extends Component {
     const { tickets, onSave, onRemove, onDragStart } = this.props;
     return (
       <div>
-        {tickets.map(ticket =>
+        {tickets.map(ticket => (
           <EditableTicket
             onDragStart={e => onDragStart(e, ticket)}
             key={ticket.id}
             onRemove={onRemove}
             onSave={onSave}
             ticket={ticket}
-            />
-          )}
+          />
+        ))}
       </div>
-    )
+    );
   }
 }
 

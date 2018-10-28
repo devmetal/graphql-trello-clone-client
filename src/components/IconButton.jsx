@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Pointer = styled.div`
-cursor: pointer;
+  cursor: pointer;
 `;
 
-export default ({ icon, onClick }) =>
-  <Pointer onClick={onClick}><i className={icon} /></Pointer>
+export default ({ icon, onClick }) => (
+  <Pointer onClick={onClick}>
+    <i className={icon} />
+  </Pointer>
+);

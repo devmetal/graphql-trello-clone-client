@@ -39,13 +39,11 @@ class TicketEditor extends Component {
     };
   }
 
-  handleLabelChange = e =>
-    this.setState({ label: e.target.value });
+  handleLabelChange = e => this.setState({ label: e.target.value });
 
-  handleBodyChange = e =>
-    this.setState({ body: e.target.value });
-  
-  handleSave = (e) => {
+  handleBodyChange = e => this.setState({ body: e.target.value });
+
+  handleSave = e => {
     if (this.props.ticket.id !== '') {
       this.props.onSave({
         ...this.state,
@@ -53,17 +51,17 @@ class TicketEditor extends Component {
       });
     } else {
       this.props.onCreate({
-        ...this.state
+        ...this.state,
       });
     }
-  }
+  };
 
-  handleKeyPress = (e) => {
-    if (e.key === 'Enter') {      
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      this.props.onSave({...this.state});
+      this.props.onSave({ ...this.state });
     }
-  }
+  };
 
   render() {
     const { onCancel } = this.props;
@@ -83,10 +81,14 @@ class TicketEditor extends Component {
           value={this.state.body}
           onChange={this.handleBodyChange}
         />
-        <Button fullWidth onClick={this.handleSave}>Save</Button>
-        <Button fullWidth onClick={onCancel}>Cancel</Button>
+        <Button fullWidth onClick={this.handleSave}>
+          Save
+        </Button>
+        <Button fullWidth onClick={onCancel}>
+          Cancel
+        </Button>
       </Card>
-    )
+    );
   }
 }
 
