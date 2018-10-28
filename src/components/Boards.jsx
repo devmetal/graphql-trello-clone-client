@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import Board from './Board';
 import BoardType from '../types/Board';
 
-const StyledGrid = styled(Grid) `
+const StyledGrid = styled(Grid)`
   background-color: ${props => props.theme.colors.bg};
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
   height: 100%;
   padding: 0;
@@ -20,7 +20,7 @@ const StyledGrid = styled(Grid) `
 
 const StyledRow = styled(Row)`
   flex-wrap: nowrap;
-`
+`;
 
 class Boards extends Component {
   static propTypes = {
@@ -37,12 +37,19 @@ class Boards extends Component {
   };
 
   render() {
-    const { boards, onRemoveTicket, onSaveBoard, onSaveTicket, onCreateTicket, onMoveTicket } = this.props;
+    const {
+      boards,
+      onRemoveTicket,
+      onSaveBoard,
+      onSaveTicket,
+      onCreateTicket,
+      onMoveTicket,
+    } = this.props;
 
     return (
       <StyledGrid fluid>
         <StyledRow>
-          {boards.map(board =>
+          {boards.map(board => (
             <Board
               onSaveBoard={onSaveBoard}
               onCreateTicket={ticket => onCreateTicket(board.id, ticket)}
@@ -52,10 +59,10 @@ class Boards extends Component {
               key={board.id}
               {...board}
             />
-          )}
+          ))}
         </StyledRow>
       </StyledGrid>
-    )
+    );
   }
 }
 

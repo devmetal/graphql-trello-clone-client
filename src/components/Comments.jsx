@@ -16,16 +16,16 @@ class Comments extends Component {
     const { comments } = this.props;
 
     if (!comments.length) {
-      return <div>No comments yet</div>
+      return <div>No comments yet</div>;
     }
 
     return (
       <div>
-        {comments.map((comment =>
-          <Comment key={comment.id} {...comment} />)
-        )}
+        {comments.map(comment => (
+          <Comment key={comment.id} {...comment} />
+        ))}
       </div>
-    )
+    );
   }
 }
 

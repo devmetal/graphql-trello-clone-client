@@ -19,17 +19,15 @@ class TicketCard extends Component {
 
   handleToggleComments = () =>
     this.setState({ commentsVisible: !this.state.commentsVisible });
-  
-  handleRemove = () =>
-    this.setState({ confirmDelete: true });
 
-  handleCancel = () =>
-    this.setState({ confirmDelete: false });
+  handleRemove = () => this.setState({ confirmDelete: true });
+
+  handleCancel = () => this.setState({ confirmDelete: false });
 
   render() {
     const { ticket, onEdit, onRemove, onDragStart } = this.props;
     const { id, label, body, comments } = ticket;
-    
+
     return (
       <Card onDragStart={onDragStart} title={label} loading={id === ''}>
         <TicketBody
@@ -49,7 +47,7 @@ class TicketCard extends Component {
           </Flex>
         </HiddenByDefault>
       </Card>
-    )
+    );
   }
 }
 

@@ -15,16 +15,22 @@ class PrivateRoute extends Component {
     const signed = currentUser !== null && !!currentUser.email;
 
     return (
-      <Route {...rest} render={props => (
-        signed === true ? (
-          <Component {...props} />
-        ) : (
-            <Redirect to={{
-              ...redirect,
-              state: { from: props.location }
-            }} />
+      <Route
+        {...rest}
+        render={props =>
+          signed === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                ...redirect,
+                state: { from: props.location },
+              }}
+            />
           )
-      )} />)
+        }
+      />
+    );
   }
 }
 

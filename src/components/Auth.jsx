@@ -33,21 +33,21 @@ class Auth extends Component {
       return <Fail text={this.state.error} />;
     }
     return null;
-  }
+  };
 
   renderRedirect = () => {
     if (this.state.success) {
-      return <Redirect to="/boards" />
+      return <Redirect to="/boards" />;
     }
     return null;
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
         <AuthBox>
-          { this.renderErrors()  }
-          { this.renderRedirect()  }
+          {this.renderErrors()}
+          {this.renderRedirect()}
           <Mutation mutation={LOGIN}>
             {login => (
               <AuthFormFlex
@@ -58,7 +58,7 @@ class Auth extends Component {
                       window.localStorage.setItem('token', data.login);
                       this.setState({ success: true, loading: false });
                     })
-                    .catch((e) => {
+                    .catch(e => {
                       this.setState({ error: e.message, loading: false });
                     });
                 }}
@@ -67,7 +67,7 @@ class Auth extends Component {
           </Mutation>
         </AuthBox>
       </React.Fragment>
-    )
+    );
   }
 }
 

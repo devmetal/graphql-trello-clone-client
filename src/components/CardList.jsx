@@ -8,8 +8,4 @@ const Items = styled.div`
   flex-direction: column;
 `;
 
-export default ({ children }) => (
-  <Items>
-    {children}
-  </Items>
-);
+export default ({ children }) => <Items>{children}</Items>;

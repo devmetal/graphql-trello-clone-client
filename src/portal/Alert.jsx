@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 import Portal from './Portal';
@@ -13,9 +13,7 @@ const AlertBox = styled.div`
 const Alert = ({ text, className }) => (
   <Portal>
     <AlertBox>
-      <div className={className}>
-        {text}
-      </div>
+      <div className={className}>{text}</div>
     </AlertBox>
   </Portal>
 );
