@@ -19,7 +19,7 @@ const getJwtToken = () => window.localStorage.getItem('token');
 const httpLink = new HttpLink();
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:5432/subscriptions',
+  uri: 'ws://localhost:5432/graphql',
   options: {
     reconnect: true,
     connectionParams: () => ({
@@ -57,7 +57,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache({
     dataIdFromObject: ({ id }) => id || null,
   }),
-  dataIdFromObject: ({ id }) => id || null,
 });
 
 class App extends Component {

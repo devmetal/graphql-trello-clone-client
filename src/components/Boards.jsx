@@ -15,7 +15,12 @@ const StyledGrid = styled(Grid) `
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
   height: 100%;
+  padding: 0;
 `;
+
+const StyledRow = styled(Row)`
+  flex-wrap: nowrap;
+`
 
 class Boards extends Component {
   static propTypes = {
@@ -36,7 +41,7 @@ class Boards extends Component {
 
     return (
       <StyledGrid fluid>
-        <Row>
+        <StyledRow>
           {boards.map(board =>
             <Board
               onSaveBoard={onSaveBoard}
@@ -48,7 +53,7 @@ class Boards extends Component {
               {...board}
             />
           )}
-        </Row>
+        </StyledRow>
       </StyledGrid>
     )
   }

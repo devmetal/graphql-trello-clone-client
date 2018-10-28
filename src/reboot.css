@@ -18,6 +18,7 @@
    -ms-text-size-adjust: 100%;
    -ms-overflow-style: scrollbar;
    -webkit-tap-highlight-color: transparent;
+   background-color: #f3f3f3;
  }
  
  @-ms-viewport {
@@ -36,7 +37,6 @@
    line-height: 1.5;
    color: #212529;
    text-align: left;
-   background-color: #fff;
  }
  
  [tabindex="-1"]:focus {
