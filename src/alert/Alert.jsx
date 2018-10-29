@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Portal from './Portal';
+import Portal from '../components/Portal';
 
 const AlertBox = styled.div`
   display: flex;

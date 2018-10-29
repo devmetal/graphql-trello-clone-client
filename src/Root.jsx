@@ -6,18 +6,8 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
-
-import PrivateRoute from './components/PrivateRoute';
-import StrangersRoute from './components/StrangersRoute';
-import BoardsContainer from './BoardsContainer';
-import Auth from './components/Auth';
 import ThemeProvider from './Theme';
+import App from './App';
 
 const getJwtToken = () => window.localStorage.getItem('token');
 
@@ -64,36 +54,16 @@ const client = new ApolloClient({
   }),
 });
 
-class App extends Component {
+class Root extends Component {
   render() {
     return (
       <ThemeProvider>
         <ApolloProvider client={client}>
-          <Router>
-            <Switch>
-              <PrivateRoute
-                path="/boards"
-                component={BoardsContainer}
-                redirect={{
-                  pathname: '/login',
-                }}
-              />
-              <StrangersRoute
-                path="/login"
-                component={() => (
-                  <Auth subsClient={wsLink.subscriptionClient} />
-                )}
-                redirect={{
-                  pathname: '/boards',
-                }}
-              />
-              <Route component={() => <Redirect to="/boards" />} />
-            </Switch>
-          </Router>
+          <App />
         </ApolloProvider>
       </ThemeProvider>
     );
   }
 }
 
-export default App;
+export default Root;
