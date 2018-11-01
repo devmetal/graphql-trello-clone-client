@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import decode from 'jwt-decode';
 
 import { Fail } from '../alert/Alert';
 import Auth from './Auth';
-import { SignedUser } from './useSignedUser';
-
-const AuthBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+import { UserContext } from './userContext';
 
 class AuthScreen extends Component {
   state = { error: '', isSignUp: false };
@@ -32,9 +22,9 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <SignedUser.Consumer>
+      <UserContext.Consumer>
         {({ setUser }) => (
-          <AuthBox>
+          <div>
             {this.renderErrors()}
             <Auth
               isSignUp={this.state.isSignUp}
@@ -46,9 +36,9 @@ class AuthScreen extends Component {
               }}
               onError={this.onError}
             />
-          </AuthBox>
+          </div>
         )}
-      </SignedUser.Consumer>
+      </UserContext.Consumer>
     );
   }
 }

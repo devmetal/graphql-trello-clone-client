@@ -10,7 +10,7 @@ const Auth = ({
   onClickSignIn,
   onClickSignUp,
 }) => {
-  if (isSignUp === true) {
+  if (isSignUp) {
     return (
       <SignUp
         onSuccess={onSuccess}

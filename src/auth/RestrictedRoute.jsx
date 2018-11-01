@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
-import { useSignedUser } from './useSignedUser';
+import { useUserContext } from './userContext';
 
 const Restricted = ({ mustBe, component: Component, redirect, ...rest }) => {
-  const { user } = useSignedUser();
+  const { user } = useUserContext();
 
   const renderRoute = props => {
     const signed = user !== null;
