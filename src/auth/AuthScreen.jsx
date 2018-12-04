@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import decode from 'jwt-decode';
 
 import { Fail } from '../alert/Alert';
-import Auth from './Auth';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 import { UserContext } from './userContext';
 
 class AuthScreen extends Component {
@@ -21,21 +21,26 @@ class AuthScreen extends Component {
   onError = error => this.setState({ error });
 
   render() {
+    const { isSignUp } = this.state;
+
     return (
       <UserContext.Consumer>
         {({ setUser }) => (
           <div>
             {this.renderErrors()}
-            <Auth
-              isSignUp={this.state.isSignUp}
-              onClickSignIn={this.toggleToSignIn}
-              onClickSignUp={this.toggleToSignUp}
-              onSuccess={token => {
-                window.localStorage.setItem('token', token);
-                setUser(decode(token));
-              }}
-              onError={this.onError}
-            />
+            {isSignUp ? (
+              <SignUp
+                onSuccess={this.setUser}
+                onError={this.onError}
+                onClickSignIn={this.toggleToSignIn}
+              />
+            ) : (
+              <SignIn
+                onSuccess={this.setUser}
+                onError={this.onError}
+                onClickSignUp={this.toggleToSignUp}
+              />
+            )}
           </div>
         )}
       </UserContext.Consumer>

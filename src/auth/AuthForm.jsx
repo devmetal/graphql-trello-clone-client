@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import isEmail from 'validator/lib/isEmail';
 import isLength from 'validator/lib/isLength';
 
-import Button from '../components/Button';
-
 class AuthForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
@@ -29,23 +27,31 @@ class AuthForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    let hasError = false;
     const { email, password } = this.state;
     const { onSubmit, isSignUp } = this.props;
 
     if (!isEmail(email)) {
       this.validationError('email', 'Invalid email address');
+      hasError = true;
     }
 
     if (!isLength(password, { min: 3 })) {
-      this.validationError('password', 'Password minimum length is free');
+      this.validationError('password', 'Password minimum length is 3');
+      hasError = true;
     }
 
     if (isSignUp) {
       const { confirm } = this.state;
 
       if (confirm !== password) {
-        return this.validationError('confirm', 'Passwords does not match');
+        this.validationError('confirm', 'Passwords does not match');
+        hasError = true;
       }
+    }
+
+    if (hasError) {
+      return;
     }
 
     return onSubmit({ email, password });
@@ -91,9 +97,9 @@ class AuthForm extends Component {
             {errors.confirm && <div>{errors.confirm}</div>}
           </div>
         ) : null}
-        <Button type="submit" disabled={disabled}>
+        <button type="submit" disabled={disabled}>
           {this.props.isSignUp ? 'Sign Up' : 'Sign In'}
-        </Button>
+        </button>
       </form>
     );
   }

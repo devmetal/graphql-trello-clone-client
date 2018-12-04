@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import decode from 'jwt-decode';
 import { withApollo } from 'react-apollo';
 import {
   BrowserRouter as Router,
@@ -10,10 +11,10 @@ import {
 import RestrictedRoute from './auth/RestrictedRoute';
 import AuthScreen from './auth/AuthScreen';
 import query from './auth/query/user';
-import { SignedUser, useSignedUser } from './auth/useSignedUser';
+import { UserContext, useUserContext } from './auth/userContext';
 
 function Temp() {
-  const user = useSignedUser();
+  const user = useUserContext();
 
   return (
     <div>
@@ -34,7 +35,9 @@ class App extends Component {
     };
   }
 
-  setUser = user => {
+  setUser = jwt => {
+    window.localStorage.setItem('token', jwt);
+    const user = decode(jwt);
     this.setState({ user });
   };
 
@@ -46,8 +49,14 @@ class App extends Component {
         fetchPolicy: 'network-only',
       })
       .then(({ data }) => {
+        const { currentUser } = data;
         this.setState({
-          user: data.currentUser,
+          user: currentUser
+            ? {
+                id: currentUser.id,
+                email: currentUser.email,
+              }
+            : null,
           loading: false,
         });
       });
@@ -61,7 +70,7 @@ class App extends Component {
     }
 
     return (
-      <SignedUser.Provider
+      <UserContext.Provider
         value={{
           user,
           setUser,
@@ -88,7 +97,7 @@ class App extends Component {
             <Route component={() => <Redirect to="/boards" />} />
           </Switch>
         </Router>
-      </SignedUser.Provider>
+      </UserContext.Provider>
     );
   }
 }
